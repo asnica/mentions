@@ -6,10 +6,14 @@
   ],
   "env": {
     "MENTIONS_MAPPING_FILE_PATH": {
-      "description": "Your mapping file path"
+      "description": "Your mapping file path",
+      "value": "https://github.com/asnica/mentions/blob/master/mention_mappings.yml"
     },
     "SLACK_WEBHOOK_URL": {
       "description": "Your slack Incoming Webhooks URL"
+    },
+    "SLACK_CHANNEL": {
+      "description": "Please set secret value and remember this value. If you don't need send message, please set blank."
     },
     "GITHUB_TO_SLACK_TOKEN": {
       "required": false,

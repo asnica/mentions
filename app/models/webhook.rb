@@ -35,17 +35,20 @@ class Webhook < ApplicationRecord
   end
 
   def run(payload:)
+    Rails.logger.info "payload:"
+    Rails.logger.info payload
     from_instance = from_class.new(payload: payload)
+    Rails.logger.info "from_instance.accept?: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
+    Rails.logger.info from_instance.accept? ? "true" : "false"
+    Rails.logger.info "from_instance.class.to_s: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
+    Rails.logger.info from_instance.class.to_s
     return unless from_instance.accept?
 
-    mentions = from_instance.mentions.map { |m|
-      id_mapping ||= IdMapping.new(ENV.fetch('MENTIONS_MAPPING_FILE_PATH'))
-      id_mapping.find(user_name: m, from: from, to: to)
-    }.compact
-
-    mentions.each do |mention|
-      to_class.new(mention: mention, url: from_instance.url, additional_message: from_instance.additional_message).post
-    end
+    Rails.logger.info "from_instance.url: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
+    Rails.logger.info from_instance.url
+    Rails.logger.info "rom_instance.send_message: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
+    Rails.logger.info from_instance.send_message(to: to)
+    to_class.new(message: from_instance.send_message(to: to)).post
   end
 
   private

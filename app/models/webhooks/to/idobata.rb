@@ -1,7 +1,6 @@
 class Webhooks::To::Idobata
-  def initialize(mention:, url:, additional_message:)
-    @mention = "@#{mention}"
-    @text = "#{@mention} #{url} #{additional_message}"
+  def initialize(message:)
+    @text = message
     # TODO: support multiple hook
     @webhook_uri = ENV.fetch('IDOBATA_WEBHOOK_URL')
   end

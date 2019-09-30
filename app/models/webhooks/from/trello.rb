@@ -1,15 +1,28 @@
 class Webhooks::From::Trello < Webhooks::From::Base
   PATTERNS = %w()
 
+  def from
+    "trello"
+  end
+
   def comment
-    @payload.dig('action', 'data', 'text')
+    @payload.dig('event', 'data', 'text')
   end
 
   def url
-    "https://trello.com/c/#{@payload.dig('action', 'data', 'card', 'shortLink')}"
+    "https://trello.com/c/#{@payload.dig('event', 'data', 'card', 'shortLink')}#comment-#{@payload.dig('event', 'id')}"
+  end
+
+  def additional_message
+    "*トレロにコメントされました。*"
   end
 
   def accept?
-    @payload.dig('action', 'type') == 'commentCard'
+    Rails.logger.info "in Webhooks::From::Trello ---"
+    Rails.logger.info "@payload:"
+    Rails.logger.info @payload
+    Rails.logger.info "@payload.dig('event', 'type'):"
+    Rails.logger.info @payload.dig('event', 'type')
+    @payload.dig('event', 'type') == 'commentCard'
   end
 end

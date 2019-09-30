@@ -8,4 +8,8 @@ class Webhooks::From::Bitbucket < Webhooks::From::Base
   def url
     search_content('links', 'html', 'href')
   end
+
+  def from
+    "bitbucket"
+  end
 end

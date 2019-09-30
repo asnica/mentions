@@ -17,4 +17,8 @@ class Webhooks::From::Esa < Webhooks::From::Base
   def additional_message
     "you've been mentioned(\\( ⁰⊖⁰)/)"
   end
+
+  def from
+    "esa"
+  end
 end

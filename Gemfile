@@ -21,6 +21,9 @@ end
 
 group :development do
   gem 'listen'
+  gem 'dotenv-rails'
+  gem 'ruby-trello'
+  gem 'launchy'
 end
 
 group :production do

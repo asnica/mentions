@@ -2,6 +2,10 @@ class Webhooks::From::Github < Webhooks::From::Base
   PATTERNS = %w(comment pull_request issue)
   ACCEPT_ACTIONS = %w(created opened assigned review_requested)
 
+  def from
+    "github"
+  end
+
   def comment
     assigned? ? 'assigned' : search_content('body')
     case
