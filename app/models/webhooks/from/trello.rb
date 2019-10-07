@@ -6,7 +6,11 @@ class Webhooks::From::Trello < Webhooks::From::Base
   end
 
   def comment
-    @payload.dig('event', 'data', 'text')
+    comment_text = []
+    comment_text << "【#{@payload.dig('event', 'data', 'card', 'name')}】"
+    comment_text << ""
+    comment_text << @payload.dig('event', 'data', 'text')
+    comment_text.join("\n")
   end
 
   def url
