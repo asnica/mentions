@@ -7,7 +7,7 @@
   "env": {
     "MENTIONS_MAPPING_FILE_PATH": {
       "description": "Your mapping file path",
-      "value": "https://github.com/asnica/mentions/blob/master/mention_mappings.yml"
+      "value": "https://raw.githubusercontent.com/asnica/mentions/master/mention_mappings.yml"
     },
     "SLACK_WEBHOOK_URL": {
       "description": "Your slack Incoming Webhooks URL"
