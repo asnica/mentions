@@ -49,9 +49,9 @@ class Webhooks::From::Base
       to_user_name = id_mapping.find(user_name: m, from: from, to: to)
       Rails.logger.info "m: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
       Rails.logger.info m
-      transed_comment = transed_comment.gsub("@#{m}", to_user_name)
       Rails.logger.info "transed_comment: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
       Rails.logger.info transed_comment
+      transed_comment = transed_comment.gsub("@#{m}", to_user_name)
     }.compact
     messages << transed_comment
 
