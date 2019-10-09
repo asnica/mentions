@@ -35,8 +35,7 @@ class Webhooks::From::Base
     messages = []
     messages << additional_message if additional_message.present?
     messages << url if url.present?
-    messages << ""
-    messages << "```"
+    messages << ">>>"
     transed_comment = comment
     Rails.logger.info "comment: line #{__LINE__} in file #{__FILE__}, in method '#{__method__}'"
     Rails.logger.info comment
@@ -54,8 +53,6 @@ class Webhooks::From::Base
       transed_comment = transed_comment.gsub("@#{m}", to_user_name)
     }.compact
     messages << transed_comment
-
-    messages << "```"
     messages.join("\n")
   end
 

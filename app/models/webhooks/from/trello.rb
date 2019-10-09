@@ -7,7 +7,7 @@ class Webhooks::From::Trello < Webhooks::From::Base
 
   def comment
     comment_text = []
-    comment_text << "【#{@payload.dig('event', 'data', 'card', 'name')}】"
+    comment_text << "*#{@payload.dig('event', 'data', 'card', 'name')}*"
     comment_text << ""
     comment_text << @payload.dig('event', 'data', 'text')
     comment_text.join("\n")
@@ -15,10 +15,6 @@ class Webhooks::From::Trello < Webhooks::From::Base
 
   def url
     "https://trello.com/c/#{@payload.dig('event', 'data', 'card', 'shortLink')}#comment-#{@payload.dig('event', 'id')}"
-  end
-
-  def additional_message
-    "*トレロにコメントされました。*"
   end
 
   def accept?
